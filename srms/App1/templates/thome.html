@@ -1,0 +1,25 @@
+{% extends 'tbase.html' %}
+{% block content %}
+	<table class="pr table table-bordered table-hover table-striped my-5 px-5 mx-5">
+		<tr>
+			<th>First name</th>
+			<td>{{ob.fname}}</td>
+		</tr>
+		<tr>
+			<th>Last name</th>
+			<td>{{ob.lname}}</td>
+		</tr>
+		<tr>
+			<th>Faculty</th>
+			<td>{{ob.f_code}}</td>
+		</tr>
+		<tr>
+			<th>Subject</th>
+			<td>{{ob.subject}}</td>
+		</tr>
+		<tr>
+			<th>Department</th>
+			<td>{{ob.dept}}</td>
+		</tr>
+	</table>
+{% endblock %}

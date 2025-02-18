@@ -1,0 +1,16 @@
+{% extends 'st_home.html' %}
+{% block content %}
+<h1 class="my-5">Change Password</h1>
+<form method="post">
+	{% csrf_token %}
+	Current Password : <input type="text" disabled name="" value="{{opw}}" class="form-control my-3">
+	<input type="text" name="npw" placeholder="New Password" class="form-control my-3">
+	<input type="text" name="rnpw" placeholder="Confirm New Password" class="form-control my-3">
+	<input type="submit" value="Change Password" name="" class="btn btn-success my-5">
+</form>
+<script type="text/javascript">
+	{% if msg %}
+	alert('{{msg}}');
+	{% endif %}
+</script>
+{% endblock %}

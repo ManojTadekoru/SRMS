@@ -1,0 +1,25 @@
+{% extends 'st_home.html' %}
+{% block content %}
+    <h1 class="my-5">Performance Analysis</h1>
+    <h5 class="my-3">The subject in which you got the highest marks in internals is: {{ hmc }} with {{hmv}} marks</h5>
+    <h5 class="my-3">The subject in which you got the lowest marks in internals is: {{ lmc }} with {{lmv}} marks</h5>
+    
+    <table class="table table-bordered table-striped my-5">
+        <tr>
+            <th>Course id</th>
+            <th>Course name</th>
+            <th>MID 1 Marks</th>
+            <th>MID 2 Marks</th>
+            <th>Remarks</th>
+        </tr>
+        {%  for key, value_list in mid1vsmid2.items %}
+            <tr>
+                <td>{{key}}</td>
+                <td>{{value_list.0}}</td>
+                <td>{{value_list.1}}</td>
+                <td>{{value_list.2}}</td>
+                <td class="{% if 'increase' in value_list.3 %} text-success {% else %} text-danger {% endif %}">{{value_list.3}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

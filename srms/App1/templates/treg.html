@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style type="text/css">
+        .container {
+            /*height: 900px;*/
+            width: 600px;
+            margin: 35px;
+        }
+
+        body {
+            background-image: url("https://s3.ap-southeast-1.amazonaws.com/images.deccanchronicle.com/dc-Cover-6kn3u7utpcqktf72fklu6sr534-20230219004624.Medi.jpeg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: "Tenor Sans", sans-serif;
+        }
+
+        .card {
+            border: 2px dashed slategrey;
+            border-radius: 10px;
+            opacity: 0.81;
+        }
+    </style>
+    <title>Teacher Registration</title>
+</head>
+<body>
+    <h1 class="text mx-5 mt-3"><i class="fa-regular fa-id-card"></i> Teacher Registration</h1>
+    <div class="container my-4">
+        <form method="post" class="card py-3 px-4">
+            {% csrf_token %}
+            <input type="text" class="my-3 form-control" name="fn" placeholder="First Name">
+            <input type="text" name="ln" placeholder="Last Name" class="my-3 form-control">
+            <input type="text" name="fc" placeholder="Faculty Code" class="my-3 form-control">
+            <select name="dept" id="deptSelect" class="my-3 form-control">
+                <option value="" selected disabled>Select Department</option>
+                {% for dept_name in department_names %}
+                <option value="{{ dept_name }}">{{ dept_name }}</option>
+                {% endfor %}
+            </select>
+            <select name="subject" id="subjectSelect" class="my-3 form-control" disabled>
+                <option value="" selected disabled>Select Subject</option>
+            </select>
+            <input type="text" name="un" placeholder="Enter Username" class="my-3 form-control">
+            <input type="text" name="pw" placeholder="Set Password" class="my-3 form-control">
+            <input type="submit" class="btn btn-success form-control my-3" name="" value="Register">
+        </form>
+    </div>
+    <script type="text/javascript">
+        {% if error %}
+            alert('{{error}}')
+        {% endif %}
+    </script>
+    <script>
+        // JavaScript to update subjects dropdown based on selected department
+        document.getElementById('deptSelect').addEventListener('change', function() {
+            var deptSelect = document.getElementById('deptSelect');
+            var subjectSelect = document.getElementById('subjectSelect');
+            var subjects = {
+                'CSE': ['C', 'C++', 'Python', 'Software Engineering', 'Machine Learning'],
+                'ECE': ['Electromagnetic Field Theory', 'Basic Electrical Engineering', 'Linear Integrated Circuits'],
+                'EEE': ['Electromagnetic Field Theory', 'Basic Electrical Engineering', 'Linear Integrated Circuits'],
+                'MECH': ['Mechanics', 'Dynamics', 'Thermodynamics', 'Materials Science'],
+                'CIVIL': ['Surveying', 'Building Materials and Construction', 'Engineering Geology'],
+                'IT': ['Digital Principles', 'Operating Systems', 'Database Management Systems']
+            };
+            var selectedDept = deptSelect.value;
+            var deptSubjects = subjects[selectedDept];
+            // Clear existing options
+            subjectSelect.innerHTML = '';
+            // Add default disabled option
+            var defaultOption = document.createElement('option');
+            defaultOption.text = 'Select Subject';
+            defaultOption.value = '';
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            subjectSelect.add(defaultOption);
+            // Populate subjects dropdown based on selected department
+            if (selectedDept) {
+                for (var i = 0; i < deptSubjects.length; i++) {
+                    var option = document.createElement('option');
+                    option.text = deptSubjects[i];
+                    option.value = deptSubjects[i];
+                    subjectSelect.add(option);
+                }
+                // Enable subjects dropdown
+                subjectSelect.disabled = false;
+            } else {
+                // If no department selected, disable subjects dropdown
+                subjectSelect.disabled = true;
+            }
+        });
+    </script>
+</body>
+</html>

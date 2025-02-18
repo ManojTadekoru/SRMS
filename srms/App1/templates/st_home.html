@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&family=Tenor+Sans&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+body {
+/*        font-family: Arial, sans-serif;*/
+font-family: "Tenor Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;}
+.navbar {
+  height: 100vh; /* Full height of viewport */
+  width: 200px; /* Width of navbar */
+  position: fixed; /* Fix the navbar position */
+  padding-top: 10px;
+  background-color: #262261; 
+            color: white;
+}
+
+
+
+.navbar-nav .nav-item {
+  padding: 10px 15px;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  background-color: white; /* Darker color on hover */
+  color: #c2914e;
+  
+}
+.navbar-nav .nav-item:hover {
+  background-color: white; /* Darker color on hover */
+  color: #c2914e;
+  
+}
+.navbar a 
+{
+  color: white;
+}
+.navbar a:hover
+{
+  color: #c2914e;
+}
+
+
+.main-content {
+  margin-left: 200px; /* Adjust content to the right of navbar */
+  padding: 20px;
+  background-color: #e8f7fc;
+  height: 750px;
+
+}
+.animation-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#animated-heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  animation: slideRight 2s linear forwards;
+}
+
+#animated-paragraph {
+  font-size: 18px;
+  color: #666;
+  animation: slideLeft 2s linear forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.table-bordered
+{
+  border: 2px solid black;
+}
+.table-bordered tr,td,th
+{
+  border: 2px solid black;
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <!-- <a class="navbar-brand" href="#">Academic Portal</a> -->
+  <h3 class="text-white">Welcome {{ob.fname}}</h3>
+  <ul class="navbar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'shome' id %}"><i class="fa-solid fa-house-user"></i> Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'schedule' id %}"><i class="fa-solid fa-chart-line"></i> Analyze Your Performance</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'exam-reg' id %}"><i class="fa-solid fa-file-circle-plus"></i> Exam Registration</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'sem-res' id %}"><i class="fa-solid fa-square-poll-vertical"></i> Semester Results</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'int-marks' id %}"><i class="fa-solid fa-square-poll-horizontal"></i> Internal Marks</a>
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="{% url 'eim' id %}"><i class="fa-solid fa-ranking-star"></i> Earlier Internal Marks</a>
+    </li> -->
+  </ul>
+  <button type="button" id="redirectButton" class="btn btn-outline-warning"><i class="fa-solid fa-arrow-right-from-bracket"></i> </button>
+  <button type="button" id="cpbutton" class="btn btn-outline-warning"><i class="fa-solid fa-key"></i> </button>
+</nav>
+
+<div class="main-content">
+  <h2 id="animated-heading" class="text-center">Welcome to Your Academic Portal</h2>
+  <p id="animated-paragraph" class="text-center">This is where you can access various features related to your academic journey.</p>
+  {% block content %}
+  {% endblock %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.getElementById("redirectButton").addEventListener("click", function() {
+  // Redirect the user to the other page
+  window.location.href = "http://127.0.0.1:8000/login/";
+});
+</script>
+<script>
+document.getElementById("cpbutton").addEventListener("click", function() {
+  // Redirect the user to the other page
+  window.location.href = "http://127.0.0.1:8000/cp/{{ob.id}}";
+});
+</script>
+</body>
+</html>

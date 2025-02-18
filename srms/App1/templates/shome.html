@@ -1,0 +1,22 @@
+{% extends 'st_home.html' %}
+{% block content %}
+<h1 class="my-5">PROFILE</h1>
+<table class="table table-bordered table-hover table-striped my-5">
+  <tr>
+    <th>First name</th>
+    <td>{{ob.fname}}</td>
+  </tr>
+  <tr>
+    <th>Last Name</th>
+    <td>{{ob.lname}}</td>
+  </tr>
+  <tr>
+    <th>Department</th>
+    <td>{{ob.dept}}</td>
+  </tr>
+  <tr>
+    <th>Registration No.</th>
+    <td>{{ob.reg_no}}</td>
+  </tr>
+</table>
+{% endblock %}

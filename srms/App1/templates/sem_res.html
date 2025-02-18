@@ -1,0 +1,21 @@
+{% extends 'st_home.html' %}
+{% block content %}
+<h2 class="my-5">Semester Results</h2>
+<table class="table table-bordered table-hover table-striped">
+	<tr>
+		<th>Subject</th>
+		<th>End sem marks</th>
+		<th>Percentage</th>
+	</tr>
+	{% for stu,p in l %}
+	<tr>
+		<td>{{stu.course_id}}</td>
+		<td>{{stu.endsem_marks}}</td>
+		<td>{{p.percentage}} %</td>
+	</tr>
+	{% endfor %}
+</table>
+
+
+
+{% endblock %}

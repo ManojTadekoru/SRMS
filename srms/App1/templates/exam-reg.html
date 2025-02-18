@@ -1,0 +1,29 @@
+{% extends 'st_home.html' %}
+{% block content %}
+<h1 class="my-5">Exam Registration</h1>
+<table class="table table-bordered table-hover table-striped">
+    <tr>
+        <th>S.no</th>
+        <th>Course id</th>
+        <th>Course name</th>
+    </tr>
+    {% for sub in subjects %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ sub.course_id }}</td>
+        <td>{{ sub.cname }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<h3>Your courses are listed above. To register for exams for these courses click on the below button.</h3>
+<h4 class="text-warning">Check if the list of courses is correct before proceeding</h4>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Register" class="btn btn-success">
+</form>
+{% if error %}
+<script type="text/javascript">
+    alert('{{ error }}');
+</script>
+{% endif %}
+{% endblock %}

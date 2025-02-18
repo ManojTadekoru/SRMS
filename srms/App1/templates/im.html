@@ -1,0 +1,25 @@
+{% extends 'st_home.html' %}
+{% block content %}
+<h2 class="my-5">Internal Marks Details</h2>
+<table class="table table-bordered table-hover table-striped">
+	<tr>
+		<th>Subject</th>
+		<th>CLA 1</th>
+		<th>CLA 2</th>
+		<th>MID 1</th>
+		<th>MID 2</th>
+	</tr>
+	{% for stu in ml %}
+	<tr>
+		<td>{{stu.course_id}}</td>
+		<td>{{stu.cla1_marks}}</td>
+		<td>{{stu.cla2_marks}}</td>
+		<td>{{stu.mid1_marks}}</td>
+		<td>{{stu.mid2_marks}}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'abase.html' %}
+{% block content %}
+<h1 class="text-warning">Are you sure you want to publish results??</h1>
+<form method="post">
+	{% csrf_token %}
+	<button type="submit" name="" class="btn btn-success my-5">
+  <i class="fa-solid fa-check"></i> Yes, I want to publish
+</button>
+
+	
+</form>
+<a href="{% url 'abase' %}" class="btn btn-danger"><i class="fa-solid fa-xmark"></i> No, I dont want to publish</a>
+{% endblock %}
+
