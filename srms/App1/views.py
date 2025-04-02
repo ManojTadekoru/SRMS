@@ -66,7 +66,7 @@ def alogin(request):
     
     random_pw = ''.join(random.choices(string.ascii_letters, k=6)) + ''.join(random.choices(string.digits, k=5))
     m='Code : '+random_pw
-    t='abhignamattay@gmail.com'
+    t='manojtadekoru1247@gmail.com'
     sbj='ONE-TIME LOGIN CODE FOR SRMS'
     b=send_mail(sbj,m,t,['asrms261@gmail.com'])
     request.session['random_pw'] = random_pw  # Save the random_pw in session to access it in subsequent requests
